@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}登録{% endblock %}
+{% block content %}
+<div>
+    <form action="/register" method="POST">
+        <label>日付：<input type="date" id="date"></label>
+
+        <table id="Table">
+            <tr>
+                <th>行動</th>
+                <th>開始時間</th>
+                <th>終了時間</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="action1"></td>
+                <td><input type="time" id="start1"></td> 
+                <td><input type="time" id="end1"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="action2"></td>
+                <td><input type="time" id="start2"></td> 
+                <td><input type="time" id="end2"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="action3"></td>
+                <td><input type="time" id="start3"></td> 
+                <td><input type="time" id="end3"></td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" type="submit">登録する</button>
+        <input type="hidden" id="counter" value="4">
+    </form>
+    <button id="add"> + </button>
+
+    <script>
+        let counter = 4;
+
+        document.querySelector("#add").addEventListener("click", () => {
+            let table = document.getElementById("Table");
+            let newRow = table.insertRow();
+
+            let newCell = newRow.insertCell();
+            let newinput = document.createElement("input");
+            newinput.setAttribute("type", "text");
+            newinput.setAttribute("id", `action${counter}`);
+            newCell.appendChild(newinput);
+
+            newCell = newRow.insertCell();
+            let newstart = document.createElement("input");
+            newstart.setAttribute("type", "time");
+            newstart.setAttribute("id", `start${counter}`);
+            newCell.appendChild(newstart);
+
+            newCell = newRow.insertCell();
+            let newend = document.createElement("input");
+            newend.setAttribute("type", "time");
+            newend.setAttribute("id", `end${counter}`);
+            newCell.appendChild(newend);
+
+            counter++;
+            document.getElementById("counter").value=counter;
+        });
+    </script>
+</div>
+
+
+
+{% endblock %}

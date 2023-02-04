@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}ホーム画面{% endblock %}
+{% block content %}
+
+<table>
+    <tr>
+        <th>行動</th>
+        <th>時間</th>
+    </tr>
+    {% for itinerary in itinerarys %}
+    <tr>
+        <td>{{ itinerary.itinerary }}</td>
+        <td>{{ itinerary.start }}~{{ itinerary.end }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
